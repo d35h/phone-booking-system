@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_destination=stderr"]
+    restart: always
+    environment:
+      POSTGRES_USER: &POSTGRES_USER postgres
+      POSTGRES_PASSWORD: test_password
+      POSTGRES_DB: *POSTGRES_USER
+    ports:
+      - 5432:5432

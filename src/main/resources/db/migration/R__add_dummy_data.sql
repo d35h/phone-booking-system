@@ -1,0 +1,10 @@
+insert into phone(manufacturer, model, technology, bands) VALUES('samsung', 'galaxy s9', 'lte', '2g:850,3g:850,4g:1');
+insert into phone(manufacturer, model, technology, bands) VALUES('samsung', 'galaxy s8', 'gsm', '2g:800,3g:900');
+insert into phone(manufacturer, model, technology, bands) VALUES('samsung', 'galaxy s7', 'gsm', '2g:900,3g:9800');
+insert into phone(manufacturer, model, technology, bands) VALUES('motorola', 'nexus 6', 'cdma', '2g:1900,3g:800,4g:5');
+insert into phone(manufacturer, model, technology, bands) VALUES('lg', 'nexus 5x', 'hspa', '2g:1900,3g:800,4g:4');
+insert into phone(manufacturer, model, technology, bands) VALUES('huawei', 'honor 7x', 'lte', '2g:800,3g:500,4g:2');
+insert into phone(manufacturer, model, technology, bands) VALUES('apple', 'iphone x', 'lte', '2g:750,3g:790,4g:3');
+insert into phone(manufacturer, model, technology, bands) VALUES('apple', 'iphone 8', 'cdma', '2g:650,3g:800,4g:1');
+insert into phone(manufacturer, model, technology, bands) VALUES('apple', 'iphone 4s', 'gsm', '2g:630,3g:900,4g:2');
+insert into phone(manufacturer, model, technology, bands) VALUES('nokia', '3310', 'gsm', '2g:850,3g:1900,4g:1900');

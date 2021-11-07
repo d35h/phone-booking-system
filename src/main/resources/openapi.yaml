@@ -1,0 +1,132 @@
+openapi: 3.0.1
+info:
+  title: Phone booking system API
+  version: 1.0.0
+servers:
+  - url: http://{hostname}:{port}/booking
+    variables:
+      hostname:
+        description: Host where app is running
+        default: localhost
+      port:
+        enum:
+          - '8080'
+        default: '8080'
+paths:
+  /phone/{id}/book:
+    post:
+      summary: Book a phone by specified id
+      operationId: book
+      parameters:
+        - $ref: "#/components/parameters/PhoneId"
+        - name: bookedBy
+          in: query
+          description: User name to book the phone
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Phone was booked
+        '400':
+          description: Phone had already been booked
+  /phone/{id}/unbook:
+    post:
+      summary: Unbook a phone by specified id
+      operationId: unbook
+      parameters:
+        - $ref: "#/components/parameters/PhoneId"
+      responses:
+        '200':
+          description: Phone was unbook
+        '400':
+          description: Phone isn't booked
+  /phone:
+    get:
+      summary: Get phone data by its manufacturer and model
+      operationId: getByManufacturerAndModel
+      parameters:
+        - name: manufacturer
+          in: query
+          schema:
+            type: string
+          description: Manufacturer name
+          required: true
+        - name: model
+          in: query
+          schema:
+            type: string
+          description: Model
+          required: true
+      responses:
+        '200':
+          description: Phone representation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhoneDto"
+        '404':
+          description: Phone not found by specified parameters
+  /phone/list:
+    get:
+      summary: Get list of all phones registerd in the system
+      operationId: getAll
+      responses:
+        '200':
+          description: List of all phones registerd in the system
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhoneListDto"
+components:
+  parameters:
+    PhoneId:
+      name: id
+      in: path
+      description: Phone id
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    PhoneListDto:
+      type: array
+      items:
+        $ref: "#/components/schemas/PhoneDto"
+    PhoneDto:
+      required:
+        - description
+        - id
+        - isBooked
+        - bookedTime
+        - bookedBy
+        - technology
+        - bands
+      properties:
+        id:
+          type: integer
+          format: int64
+        isBooked:
+          type: boolean
+        bookedTime:
+          type: string
+          format: date-time
+        bookedBy:
+          type: string
+        description:
+          type: string
+        technology:
+          type: string
+        bands:
+          type: array
+          items:
+            $ref: "#/components/schemas/BandDto"
+    BandDto:
+      required:
+        - bands
+        - frequency
+      properties:
+        band:
+          type: string
+        frequency:
+          type: string
