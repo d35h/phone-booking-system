@@ -16,6 +16,7 @@ import ro.daniil.zaru.phonebookingsystem.model.PhoneIdToBookedBy
 import ro.daniil.zaru.phonebookingsystem.service.PhoneIdByBookedByService
 import ro.daniil.zaru.phonebookingsystem.service.PhoneService
 import java.time.Instant
+import java.util.Locale
 
 @OptIn(FlowPreview::class)
 class PhonesController(
@@ -54,7 +55,9 @@ class PhonesController(
         model: String,
         exchange: ServerWebExchange?
     ): Mono<ResponseEntity<PhoneDto>> = mono {
-        val foundPhone = phoneService.getByManufacturerAndModel(manufacturer, model)
+        val foundPhone = phoneService.getByManufacturerAndModel(
+            manufacturer.lowercase(Locale.getDefault()), model.lowercase(Locale.getDefault())
+        )
         if (foundPhone == null) {
             ResponseEntity(HttpStatus.NOT_FOUND)
         } else {
