@@ -6,12 +6,12 @@ Get list of existing phones
 curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' http://localhost:8080/booking/phone/list
 ```
 
-Book phone, in the URL id `13` is used; One shall be using the id existing in their DB
+Book phone, in the URL id `13` is used, one shall be using the id existing in their DB
 ```
 curl -v -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' http://localhost:8080/booking/phone/13/book\?bookedBy\=chuchma 
 ```
 
-Unbook (return is a keyword in JVM world, thus, unbook is used) phone, in the URL id `12` is used; One shall be using the id existing in their DB
+Unbook (return is a keyword in JVM world, thus, unbook is used) phone, in the URL id `12` is used, one shall be using the id existing in their DB
 ```
 curl -v -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' http://localhost:8080/booking/phone/12/unbook
 ```
